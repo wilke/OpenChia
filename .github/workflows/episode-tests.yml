@@ -34,6 +34,10 @@ jobs:
           extras: '[]'
           test-environment: 'true'
 
+      - name: Pull the default Run container image
+        # The container executor inspects python:3.14-slim and does not pull it itself.
+        run: docker pull python:3.14-slim
+
       - name: Run the Episode suite
         run: python3 scripts/run_episode_suite.py --python "$HERMES_PYTHON" --workers 4 --verbose
 
